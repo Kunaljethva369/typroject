@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Dentist</title>
+    <link rel="icon" href="/assets/images/titleIcon.svg" type="image/icon type">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crrossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/main/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+        integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+        crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" />
+    <script src="/assets/common.js"></script>
+</head>
+
+<body onkeydown="cancelBack()">
+
+    <!------------------------------ Page Loader ----------------------------->
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!------------------------------ Header Section ----------------------------->
+
+    <header>
+        <section class="header">
+            <div class="container">
+                <div class="menu">
+                    <div class="logo">
+                        <a href="#">
+                            <img
+                                src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601d95dc011f7070a0f319c7_logo-dentist-template.svg">
+                        </a>
+                    </div>
+                    <div class="nav" id="nav">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <% if(flag==false) {%>
+                                <li class="big"><a href="/profile/email"><i class="far fa-user-circle"></i></a></li>
+                                <li class="heroBtn"><a href="/"><button>Logout</button></a></li>
+                                <%} else{ %>
+                                    <li class="heroBtn" onclick="loginRegBtn()">
+                                        <button>Login/Register</button>
+                                    </li>
+                                    <%}%>
+                        </ul>
+                    </div>
+
+                </div>
+                <%if(flag==false) {%>
+                    <div class="profileMob">
+                        <li class="mob" id="mob"><a href="/profile/email"><i class="far fa-user-circle"></i></a></li>
+                    </div>
+                    <%}%>
+                        <div class="hamburger" id="hamburger">
+                            <div id="nav-icon2">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+            </div>
+        </section>
+    </header>
+
+    <!------------------------------ Main Section ----------------------------->
+
+    <main>
+
+        <!------------------------------ Login/Register Form ----------------------------->
+        <div class="container">
+            <div class="heroimg" id="loginRegBtn">
+                <div class="middleContent" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1100">
+
+                    <!----------------- Top Login and Register button ------------------->
+
+                    <div class="btn-grp">
+                        <button id="loginbtn" class="activeFormBtn" onclick="loginTopBtn()">Login</button>
+                        <button id="registerbtn" onclick="registerTopBtn()">Register</button>
+                        <div class="cross" onclick="cross()"><i class="fas fa-times"></i></div>
+                    </div>
+
+                    <!---------------- Login Form -------------->
+                    <form name="loginForm" method="post" action="/login">
+                        <div class="login" id="loginTop">
+                            <div class="wrapper">
+                                <div class="input-data">
+                                    <input type="text" id="LoginEmail" name="email" required>
+                                    <div class="underline"></div>
+                                    <label>Email Id</label>
+                                    <span class="error" id="LoginEmailError"></span>
+                                </div>
+                            </div>
+                            <div class="wrapper">
+                                <div class="input-data">
+                                    <input type="password" id="LoginPassword" name="password" required>
+                                    <div class="underline"></div>
+                                    <label>Password</label>
+                                    <span class="error" id="LoginPasswordError"></span>
+                                </div>
+                            </div>
+                            <button type="submit" id="login" value="Login">Login</button>
+                            <p>Don't have any account? <a href="#" onclick="registerTopBtn()">Sign up</a></p>
+                        </div>
+                    </form>
+
+                    <!----------------- Register Form ---------------->
+
+                    <form name="registerForm" method="post" action="/register">
+                        <div class="register" id="registerTop">
+                            <div class="note">Note:- This Email Id will be used for booking as well.</div>
+                            <div class="wrapper">
+                                <div class="input-data">
+                                    <input type="text" id="RegName" name="regName" required>
+                                    <div class="underline"></div>
+                                    <label>Name</label>
+                                    <span class="error" id="RegNameError"></span>
+                                </div>
+                            </div>
+                            <div class="wrapper">
+                                <div class="input-data">
+                                    <input type="text" id="regemail" name="regEmail" required>
+                                    <div class="underline"></div>
+                                    <label>Email Id</label>
+                                    <span class="error" id="regEmailError"></span>
+                                </div>
+                            </div>
+                            <div class="wrapper">
+                                <div class="input-data">
+                                    <input type="password" id="regpassword" name="regPassword" required>
+                                    <div class="underline"></div>
+                                    <label>Password</label>
+                                    <span class="error" id="regPasswordError"></span>
+                                </div>
+                            </div>
+                            <button id="register" type="submit" value="submit">Sign Up</button>
+                            <p>Already have any account? <a href="#" onclick="loginTopBtn()">Login</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!------------------------------ Hero Section ----------------------------->
+
+        <section class="hero">
+            <div class="container heroContainer">
+                <div class="row">
+                    <div class="col-lg-6 heroHeader">
+                        <h1> A <span>dentistry clinic </span> <br> you can trust</h1>
+                        <h4 class="mt-3">A great life leads to a beautiful smile.</h4>
+                        <div class="heroBtn">
+                            <% if (flag==false) {%>
+                                <a href="/bookAppointment">
+                                    <button>Book an Appointment</button>
+                                </a>
+                                <% } else { %>
+                                    <a>
+                                        <button onclick="loginRegBtn()">Book an Appointment</button>
+                                    </a>
+                                    <%}%>
+                                        <a href="/assets/service/service.html">
+                                            <button class="browse m-lg-3 m-4">
+                                                Browse Services
+                                            </button>
+                                        </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img
+                            src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601d9b6c45b78923edd1cac9_image-home-hero-dentist-template-p-800.jpeg">
+                        </img>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------ CPS Section ----------------------------->
+
+        <section class="cps">
+            <div class="container" data-aos="fade-up">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 heroContact">
+                        <div>
+                            <img
+                                src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601dc37ba4434a50984876fc_icon-1-about-clinic-dentist-template.svg">
+                        </div>
+                        <div class="cpsContent">
+                            <h1>Contact</h1>
+                            <ul>
+                                <li><a href="#">9867672030</a></li>
+                                <li><a href="#">Contact@dentist.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 heroContact hour">
+                        <div>
+                            <img
+                                src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601dc37bdf96448a34ccda21_icon-2-about-clinic-dentist-template.svg">
+                        </div>
+                        <div class="cpsContent">
+                            <h1>Open Hours</h1>
+                            <ul>
+                                <li><span>Mon-Sat: </span><span>10:30 AM to 8:00 PM</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 heroContact services">
+                        <div>
+                            <img
+                                src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601dc37b261d9f95cd3c9b75_icon-3-about-clinic-dentist-template.svg">
+                        </div>
+                        <div class="cpsContent">
+                            <h1>Services</h1>
+                            <ul>
+                                <li>Cosmetic Dentist</li>
+                                <li>Dental Implants</li>
+                                <li>Teeth Whitening</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------ Services Section ----------------------------->
+
+        <section class="service" id="services">
+            <div class="container">
+                <div class="row">
+                    <div class="ourServiceBtn">
+                        <h5>Our Service</h5>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <p>
+                            Our team of dentists can help with a variety of dental services
+                        </p>
+                    </div>
+                    <div class="owl-carousel owl-theme" data-aos="zoom-in">
+                        <div class="item">
+                            <div class="card" style="width: 19rem;">
+                                <img class="card-img-top"
+                                    src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/60bb873f67aecc71736f3b22_cosmetic-dentistry-dentist-webflow-template.svg"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cosmetic Dentistry</h5>
+                                    <p class="card-text">Cosmetic dentistry is generally used to refer to any dental
+                                        work that improves the appearance, though not necessarily the functionality of
+                                        teeth, gums and/or bite.</p>
+                                    <a href="https://www.webmd.com/a-to-z-guides/what-is-a-cosmetic-dentist"
+                                        target="_blank" class="btn">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card" style="width: 19rem;">
+                                <img class="card-img-top"
+                                    src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/60bb874c82759a7762ec0820_oral-hygiene-dentist-webflow-template.svg"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Oral Hygiene</h5>
+                                    <p class="card-text">Oral hygiene is the practice of keeping one's mouth clean and
+                                        free of disease and other problems by regular brushing of the teeth and cleaning
+                                        between the teeth.</p>
+                                    <a href="https://en.wikipedia.org/wiki/Oral_hygiene" target="_blank"
+                                        class="btn btn-primary">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card" style="width: 19rem;">
+                                <img class="card-img-top"
+                                    src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/60bb87466544e0596f5c10f1_orthodontics-dentist-webflow-template.svg"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Orthodontics</h5>
+                                    <p class="card-text">People often associate a perfect smile with good health. It's
+                                        true — your oral health plays an important role in your overall well-being.</p>
+                                    <a href="https://www.webmd.com/a-to-z-guides/what-is-an-orthodontist"
+                                        target="_blank" class="btn btn-primary">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card" style="width: 19rem;">
+                                <img class="card-img-top"
+                                    src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/60bb8752f6078b572c75fbf9_dental-treatment-dentist-webflow-template.svg"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Periodontal treatments</h5>
+                                    <p class="card-text">
+                                        Periodontal therapy includes both surgical and non-surgical techniques to
+                                        restore health to the tissues that support the teeth and prevent tooth loss.</p>
+                                    <a href="http://www.dimartinodental.com/treatment/periodontal-therapy"
+                                        target="_blank" class="btn btn-primary">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card" style="width: 19rem;">
+                                <img class="card-img-top"
+                                    src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/60bb87590c28d3760172637f_dental-surgery-dentist-webflow-template.svg"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Prosthodontic</h5>
+                                    <p class="card-text">Prosthodontics is one of the branches of dentistry that deals
+                                        with the replacement of missing teeth, which may be fixed or removable.</p>
+                                    <a href="https://www.epadental.org/patients/what-is-prosthodontics" target="_blank"
+                                        class="btn btn-primary">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card" style="width: 19rem;">
+                                <img class="card-img-top"
+                                    src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/60bb876299013621b3a156cd_dental-implants-dentist-webflow-template.svg"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dental Implants</h5>
+                                    <p class="card-text">Dental implants are artificial tooth roots used to support a
+                                        restoration for a missing tooth or teeth, helping to stop or prevent jaw bone
+                                        loss.
+                                    </p>
+                                    <a href="https://www.yourdentistryguide.com/implants/" target="_blank"
+                                        class="btn btn-primary">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------ About Section ----------------------------->
+
+        <section class="about" id="about">
+            <div class="container" data-aos="fade-up">
+                <div class="row">
+                    <div class="col-lg-6 order-lg-1 order-2">
+                        <div class="aboutImg">
+                            <img src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601dcd99b3d136acf7649f30_image-2-home-about-dentist-template.jpg"
+                                class="order-lg-1 order-2">
+                            <img src="https://www.smilinedentistry.ca/images/tour3-3.jpg" class="order-lg-2 order-1">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-2 order-1">
+                        <div class="aboutContent">
+                            <div class="aboutUsBtn">
+                                <h5>About Us</h5>
+                            </div>
+                            <b>Our team has only one mission: Make you smile</b>
+                            <p>Quality doesn't come cheap. Get details about quality dental treatments with value
+                                pricing at Dentist Clinic. </p>
+                            <div class="aboutDr">
+                                <img
+                                    src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601dcd98ebb636bdcc24b2db_image-home-about-dentist-template.jpg">
+                                <div>
+                                    <h3>Dr. Andrew Moore</h3>
+                                    <div>Dentist at Global Dentistry</div>
+                                </div>
+                            </div>
+                            <button>
+                                <a href="/assets/about/about.html">
+                                    About our Clinic
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------ Customer Section ----------------------------->
+
+        <section class="customer" data-aos="fade-up" data-duration="1000">
+            <div class="container">
+                <div class="customerBtn">
+                    <h5>Our Customers</h5>
+                </div>
+                <div class="customerContent">
+                    <h2>See what our happy customers have to say</h2>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="row" data-aos="fade-up" data-duration="1200">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card" style="width: 100%;">
+                            <img class="card-img-top"
+                                src="https://www.shantimadanhospital.com/images/dental/3-happy-patients.jpg"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h3>Anita Sharma</h3>
+                                <p>
+                                    Quality of the Care Process with Best and Lastest technology are used at Dentist
+                                    Clinic.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card" style="width: 100%;">
+                            <img class="card-img-top" src="https://sdm.blogs.rutgers.edu/files/2021/06/Clinic_pm_28.jpg"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h3>Suresh Kumar</h3>
+                                <p>
+                                    The services that I receive from Dentist clinic is excellent. I would have no qualms
+                                    in recommending them to friendly and friends.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card" style="width: 100%;">
+                            <img class="card-img-top"
+                                src="https://www.baltimoredentalco.com/wp-content/uploads/2020/10/for-our-patients-1024x683.jpg"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h3>Merry Jhon</h3>
+                                <p>
+                                    World class Doctor's are avaiable with lastest technology and best Service.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardLast row" id="lastThree">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card" style="width: 100%;">
+                                <img class="card-img-top"
+                                    src="https://as1.ftcdn.net/v2/jpg/02/78/64/40/1000_F_278644017_4fQ28RQz1XUggOXgB94MPSCmyYb9s0yn.jpg"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h3>Viaan Kapoor</h3>
+                                    <p>
+                                        I loved how Dr.Pooja took her time to explain my conditions with me as well as
+                                        my treatment options. I had a great visit and the doctor's demeanor has really
+                                        put me at ease so I highly recommend this clinic.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card" style="width: 100%;">
+                                <img class="card-img-top"
+                                    src="https://highplainsperio.com/wp-content/uploads/dental-implants-2105.jpg"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h3>Akansha Rathi</h3>
+                                    <p>
+                                        Great experience! Made a same day appointment on Dentist clinic and got in right
+                                        away. The front desk staff and the medical assistant were very nice and helpful.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card" style="width: 100%;">
+                                <img class="card-img-top"
+                                    src="https://www.barrondental.com/wp-content/uploads/2019/04/Ana-Soave-photo2.png"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h3>Jessica Thomas</h3>
+                                    <p>
+                                        It took me a while to find a doctor that made me feel comfortable and welcome!
+                                        Dr.Naresh as well as her staff are awesome, they listen and give the best
+                                        advice.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 viewMoreCust">
+                        <p id="viewMore">View More</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------ Schedule Section ----------------------------->
+
+        <section class="schedule" data-aos="zoom-in">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-6">
+                        <h2>Schedule a virtual or presential appointment today</h2>
+                        <% if (flag==false) {%>
+                            <a href="/bookAppointment">
+                                <button>Book an Appointment</button>
+                            </a>
+                            <% } else { %>
+                                <a>
+                                    <button onclick="loginRegBtn()">Book an Appointment</button>
+                                </a>
+                                <%}%>
+                    </div>
+                    <div class="col-lg-5 col-md-6">
+                        <img
+                            src="https://images1-fabric.practo.com/dental-profiles-clinic-bangalore-1485003585-58835b41b7dfe.JPG">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------ Resource Section ----------------------------->
+
+        <section class="resource" data-aos="fade-up" data-duration="1000">
+            <div class="container">
+                <div class="resourceBtn">
+                    <h5>Resources</h5>
+                </div>
+                <div class="resourceContent">
+                    <h2>Our articles on Dental Health</h2>
+                    <p>
+                        Our articles are made to make sure all your doubts regrading dental health is cleared and give
+                        the best sloution to you.
+                    </p>
+                </div>
+                <div class="row" data-aos="fade-bottom" data-duration="1200">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-img">
+                                <img src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/601def4a7b7d528765398735_image-6-blog-dentist-template-p-800.jpeg"
+                                    class="card-img-top" alt="...">
+                                <button>News</button>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">4 things to consider before getting teeth braces</h5>
+                                <p class="card-text">If you're reading this article, chances are that you are likely
+                                    considering getting braces. This can be quite a busy time, so we have listed some of
+                                    the top things to do before you get braces.</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="date">
+                                <span>Februray 9, 2021</span>
+                                <a href="https://www.blueridgeorthodontics.com/20-things-to-know-before-getting-braces/"
+                                    target="_blank"><span class="btn">Read More</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-img">
+                                <img src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/601def0b261d9f227a3d2f59_image-5-blog-dentist-template-p-800.jpeg"
+                                    class="card-img-top" alt="...">
+                                <button>Questions</button>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">How often should I replace my toothbrush?</h5>
+                                <p class="card-text">The average person should be swapping out for a new toothbrush
+                                    every three to four months. This is recommended to ensure that the bristles are
+                                    still effective and bacteria accumulation on the toothbrush is minimal.</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="date">
+                                <span>June 20, 2021</span>
+                                <a href="https://www.aquafresh.com/amp/how-often-should-you-change-your-toothbrush.html"
+                                    target="_blank"><span class="btn">Read More</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-img">
+                                <img src="https://assets.website-files.com/601d7e7320ecf0fa9e816a33/601deeec10c1a30a672b7178_image-4-blog-dentist-template-p-500.jpeg"
+                                    class="card-img-top" alt="...">
+                                <button>Resources</button>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">6 great tips to keep your teeth healthy and safe</h5>
+                                <p class="card-text">
+                                    Achieving healthy teeth takes a lifetime of care. Even if you've been told that you
+                                    have nice teeth, it's crucial to take the right steps every day to take care of them
+                                    and prevent problems.
+                            </div>
+                            <div class="line"></div>
+                            <div class="date">
+                                <span>July 28, 2021</span>
+                                <a href="https://www.healthline.com/health/dental-and-oral-health/best-practices-for-healthy-teeth"
+                                    target="_blank"><span class="btn">Read More</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------ Contact Section ----------------------------->
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6" data-aos="fade-up" data-duration="1200">
+                        <div class="contactBtn">
+                            <h5>Contact Us</h5>
+                            <p class="title">
+                                Smile better with us, Get in touch now..
+                            </p>
+                            <p>
+                                Your smile our passion
+                            </p>
+                        </div>
+                        <div class="callAndEmail">
+                            <div class="call">
+                                <i class="phone fas fa-phone-alt fa-lg"></i>
+                                <span class="ps-2">+91 9867671618</span>
+                            </div>
+                            <div class="email">
+                                <i class="mail fas fa-envelope"></i>
+                                <a href="mailto:dentistclinic@gmail.com"><span
+                                        class="ps-2">dentistclinic@gmail.com</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-up" data-duration="1000">
+                        <form>
+                            <div class="inputWrapper">
+                                <input type="hidden" name="_template" value="table">
+                                <label>Name</label>
+                                <input type="text" id="name" placeholder="Full Name" required>
+                                <span class="error-txt" id="nameError"></span>
+                            </div>
+                            <div class="inputWrapper">
+                                <input type="hidden" name="_template" value="table">
+                                <label>Email Address</label>
+                                <input type="email" name="email" id="email" placeholder="email@example.com" required>
+                                <span class="error-txt" id="emailError"></span>
+                            </div>
+                            <div class="inputWrapper">
+                                <input type="hidden" name="_template" value="table">
+                                <label>Phone Number</label>
+                                <input type="number" id="number" placeholder="9867671816" required>
+                                <span class="error-txt" id="mobNoError"></span>
+                            </div>
+                            <div class="inputWrapper">
+                                <input type="hidden" name="_template" value="table">
+                                <label>Service</label>
+                                <input type="" id="contactservices" placeholder="Ex.Dental Implants" required>
+                                <span class="error-txt" id="servicesError"></span>
+                            </div>
+                            <div class="inputWrapper" id="message">
+                                <input type="hidden" name="_template" value="table">
+                                <div>Message</div>
+                                <textarea rows="3" id="mailmessage"
+                                    placeholder="Please Describe what service you are Intersted in..."
+                                    required></textarea>
+                                <span class="error-txt" id="messageError"></span>
+                            </div>
+                            <div class="submitBtn">
+                                <button type="submit" id="submit" value="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!------------------------------ Footer Section ----------------------------->
+
+    <footer>
+        <section class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <a href="#">
+                            <img
+                                src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601d95dc011f7070a0f319c7_logo-dentist-template.svg">
+
+                        </a>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram fa-lg"></i></a></li>
+                            <li><a href="#"><i class="fab fa-whatsapp fa-lg"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <p>Copyirght &copy by Dentist, All Right Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+
+
+    <section class="backtotop">
+        <div class="back" onclick="back()" style="display: none;"><a href="#"><svg
+                    class="svg-inline--fa fa-arrow-up fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas"
+                    data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                    data-fa-i2svg="">
+                    <path fill="currentColor"
+                        d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z">
+                    </path>
+                </svg><!-- <i class="fas fa-arrow-up"></i> --></a></div>
+    </section>
+
+    <!------------------------------ Required Scripts ----------------------------->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous"></script>
+    <script src="/assets/main/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        $(".owl-carousel").owlCarousel({
+            nav: true,
+            navText: ['<img src="https://img.icons8.com/ios/48/000000/less-than.png"/>',
+                '<img src="https://img.icons8.com/ios/48/000000/more-than.png"/>'
+            ],
+            autoplay: true,
+            autoPlayTimeout: 9000,
+            dots: true,
+            loop: true,
+            smartSpeed: 500,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                1100: {
+                    items: 2
+                },
+                1200: {
+                    items: 3
+                }
+            }
+        });
+    </script>
+
+    <script>
+        AOS.init({
+            once: "ture",
+            duration: 1500,
+        });
+    </script>
+
+    <script>
+        // For backtotop button to come
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(document).scrollTop() > 1000) {
+                    $(".back").css("display", "block");
+                } else {
+                    $(".back").css("display", "none");
+                }
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</body>
+
+</html>

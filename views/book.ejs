@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Dentist</title>
+    <link rel="icon"
+        href="https://assets.website-files.com/601d7e7320ecf079f58169fd/6026ec48eccd0a76cfc8f068_favicon-dentist-template.svg"
+        type="image/icon type">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crrossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/bookAppointment/book.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+        integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+        crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/redmond/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_hpUNI6T2xW77Ql9nMG54v");
+        })();
+    </script>
+    <script src="/assets/common.js"></script>
+</head>
+
+
+<body onkeydown="cancelBack()">
+    <!------------------------------ Page Loader ----------------------------->
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!------------------------------ Header Section ----------------------------->
+    <main class="main">
+        <header>
+            <section class="header" id="header">
+                <div class="container">
+                    <div class="menu">
+                        <div class="logo">
+                            <a href="#">
+                                <img
+                                    src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601d95dc011f7070a0f319c7_logo-dentist-template.svg">
+                            </a>
+                        </div>
+                        <div class="nav" id="nav">
+                            <ul>
+                                <li>
+                                    <a href="javascript:history.go(-1)"> <i class="fas fa-arrow-left"></i> Go Back</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </header>
+    </main>
+
+    <!------------------------------ Book an Appointment Section ----------------------------->
+    <div class="container book">
+        <div class="title">
+            <h1>Book An Appointment</h1>
+        </div>
+        <div class="form">
+            <form action="/bookNow" method="post" name="bookAppointment">
+                <div class="inputWrapper">
+                    <label>Patient Name</label>
+                    <input type="text" name="bookName" id="name" placeholder="Enter Your Fullname" required>
+                    <span class="error-txt" id="nameError"></span>
+                </div>
+                <div class="inputWrapper">
+                    <label>Email Address</label>
+                    <input type="email" value="<%= data[0].email%>" name="bookEmail"  id="email" disabled>
+                    <span class="error-txt" id="emailError"></span>
+                </div>
+                <div class="inputWrapper">
+                    <label>Mobile Number</label>
+                    <input type="text" id="number" name="mobNumber" maxlength="10" placeholder="9867671816" required>
+                    <span class="error-txt" id="mobNoError"></span>
+                </div>
+                <div class="inputWrapper">
+                    <label>Doctor</label>
+                    <select id="selectDoctor" name="doctorName" required>
+                        <option value="">Select Doctor</option>
+                        <option value="poojadoctor707">Dr. Pooja</option>
+                        <option value="drkrunal">Dr. Krunal</option>
+                        <option value="drkaran">Dr. Karan</option>
+                        <option value="drshweta">Dr. Shweta</option>
+                    </select>
+                    <span class="error-txt" id="genderError"></span>
+                </div>
+                <div class="inputWrapper">
+                    <label>Service</label>
+                    <select id="selectServices" name="service" required>
+                        <option value="">Select Service</option>
+                        <option value="cosmetic dentistry">Cosmetic Dentistry</option>
+                        <option value="orthodontics">Orthodontics</option>
+                        <option value="oral hygiene">Oral Hygiene</option>
+                        <option value="dental treatment">Dental Treatment</option>
+                        <option value="dental surgery">Dental Surgery</option>
+                        <option value="dental implants">Dental Implants</option>
+                    </select>
+                    <span class="error-txt" id="servicesError"></span>
+                </div>
+                <div class="inputWrapper">
+                    <label>Date</label>
+                    <input type="text" name="date" id="date" required>
+                    <span class="error-txt" id="dateError"></span>
+                </div>
+                <div class="inputWrapper selectTiming">
+                    <label>Time</label>
+                    <select id="selectTime" name="time" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
+                        <option value=""></option>
+                        <option value="10:30 AM">10:30 AM</option>
+                        <option value="11:15 AM">11:15 AM</option>
+                        <option value="12:00 AM">12:00 AM</option>
+                        <option value="12:45 AM">12:45 AM</option>
+                        <option value="01:15 PM">01:15 PM</option>
+                        <option value="02:00 PM">02:00 PM</option>
+                        <option value="04:30 PM">04:30 PM</option>
+                        <option value="05:15 PM">05:15 PM</option>
+                        <option value="06:00 PM">06:00 PM</option>
+                        <option value="06:45 PM">06:45 PM</option>
+                        <option value="07:15 PM">07:15 PM</option>
+                        <option value="08:00 PM">08:00 PM</option>
+
+                    </select>
+                    <span class="error-txt" id="timeError"></span>
+                </div>  
+                <div class="inputWrapper">
+                </div>
+                <div class="submitBtn">
+                    <button type="submit" id="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!------------------------------ Footer Section ----------------------------->
+
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <a href="#">
+                        <img
+                            src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601d95dc011f7070a0f319c7_logo-dentist-template.svg">
+                    </a>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fab fa-whatsapp fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <p>Copyirght &copy by Dentist, All Right Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!------------------------------ Required Scripts ----------------------------->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin=" anonymous"></script>
+    <script src="/assets/bookAppointment/book.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin=" anonymous"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crrossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="icon" href="https://assets.website-files.com/601d7e7320ecf079f58169fd/6026ec48eccd0a76cfc8f068_favicon-dentist-template.svg" type="image/icon type">
+    <title>Error</title>
+    <link rel="stylesheet" href="/assets/main/main.css">
+    <style>
+        h1 {
+            padding: 10rem 5rem;
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <section class="header">
+            <div class="container">
+                <div class="menu">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="https://assets.website-files.com/601d7e7320ecf079f58169fd/601d95dc011f7070a0f319c7_logo-dentist-template.svg">
+                        </a>
+                    </div>
+                    <div class="nav" id="nav">
+                        <ul>
+                            <li><a href="#" onclick="history.back()"><i class="fas fa-arrow-left"></i> Go Back</a></li>
+                            <li><a href="/assets/service/service.html">Services</a></li>
+                            <li><a href="/assets/about/about.html">About</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <div id="nav-icon2">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <%if(alert){%>
+        <h1 class="text-center color-red">
+            <%= alert %>
+        </h1>
+        <%}%>
+            <script>
+                let hamburger = document.getElementById("nav-icon2");
+
+                hamburger.addEventListener("click", () => {
+                    let nav = document.getElementById("nav");
+                    nav.classList.toggle("navactive");
+                    hamburger.classList.toggle('open');
+                });
+            </script>
+
+</body>
+
+</html>

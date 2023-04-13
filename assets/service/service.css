@@ -1,0 +1,9 @@
+.card {
+    height: 90%;
+}
+
+.service .col-lg-8 p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    max-width: 80%;
+}
